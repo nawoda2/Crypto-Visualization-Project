@@ -1,0 +1,35 @@
+[2025-01-26T00:10:58.636+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: crypto_ingestion_dag.run_ingestion_container manual__2025-01-26T00:10:47.972344+00:00 [queued]>
+[2025-01-26T00:10:58.649+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: crypto_ingestion_dag.run_ingestion_container manual__2025-01-26T00:10:47.972344+00:00 [queued]>
+[2025-01-26T00:10:58.649+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-01-26T00:10:58.659+0000] {taskinstance.py:1327} INFO - Executing <Task(DockerOperator): run_ingestion_container> on 2025-01-26 00:10:47.972344+00:00
+[2025-01-26T00:10:58.689+0000] {standard_task_runner.py:57} INFO - Started process 174 to run task
+[2025-01-26T00:10:58.733+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'crypto_ingestion_dag', 'run_ingestion_container', 'manual__2025-01-26T00:10:47.972344+00:00', '--job-id', '22', '--raw', '--subdir', 'DAGS_FOLDER/crypto_ingestion_dag.py', '--cfg-path', '/tmp/tmpkhea2se7']
+[2025-01-26T00:10:58.748+0000] {standard_task_runner.py:85} INFO - Job 22: Subtask run_ingestion_container
+[2025-01-26T00:10:58.798+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T00:10:58.870+0000] {task_command.py:410} INFO - Running <TaskInstance: crypto_ingestion_dag.run_ingestion_container manual__2025-01-26T00:10:47.972344+00:00 [running]> on host 2b4f55eb7c05
+[2025-01-26T00:10:58.996+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='crypto_ingestion_dag' AIRFLOW_CTX_TASK_ID='run_ingestion_container' AIRFLOW_CTX_EXECUTION_DATE='2025-01-26T00:10:47.972344+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2025-01-26T00:10:47.972344+00:00'
+[2025-01-26T00:10:59.140+0000] {docker.py:462} INFO - Pulling docker image ingestion-container
+[2025-01-26T00:11:00.410+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/docker/api/client.py", line 268, in _raise_for_status
+    response.raise_for_status()
+  File "/home/airflow/.local/lib/python3.7/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: http+docker://localhost/v1.47/images/create?tag=latest&fromImage=ingestion-container
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/docker/operators/docker.py", line 464, in execute
+    for output in self.cli.pull(self.image, stream=True, decode=True):
+  File "/home/airflow/.local/lib/python3.7/site-packages/docker/api/image.py", line 429, in pull
+    self._raise_for_status(response)
+  File "/home/airflow/.local/lib/python3.7/site-packages/docker/api/client.py", line 270, in _raise_for_status
+    raise create_api_error_from_http_exception(e) from e
+  File "/home/airflow/.local/lib/python3.7/site-packages/docker/errors.py", line 39, in create_api_error_from_http_exception
+    raise cls(e, response=response, explanation=explanation) from e
+docker.errors.ImageNotFound: 404 Client Error for http+docker://localhost/v1.47/images/create?tag=latest&fromImage=ingestion-container: Not Found ("pull access denied for ingestion-container, repository does not exist or may require 'docker login': denied: requested access to the resource is denied")
+[2025-01-26T00:11:00.466+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=crypto_ingestion_dag, task_id=run_ingestion_container, execution_date=20250126T001047, start_date=20250126T001058, end_date=20250126T001100
+[2025-01-26T00:11:00.489+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 22 for task run_ingestion_container (404 Client Error for http+docker://localhost/v1.47/images/create?tag=latest&fromImage=ingestion-container: Not Found ("pull access denied for ingestion-container, repository does not exist or may require 'docker login': denied: requested access to the resource is denied"); 174)
+[2025-01-26T00:11:00.523+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2025-01-26T00:11:00.554+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

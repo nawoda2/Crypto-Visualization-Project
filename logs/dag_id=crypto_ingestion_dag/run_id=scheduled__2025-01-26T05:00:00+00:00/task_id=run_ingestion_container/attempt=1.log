@@ -1,0 +1,16 @@
+[2025-01-26T06:00:03.215+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T06:00:03.285+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: crypto_ingestion_dag.run_ingestion_container scheduled__2025-01-26T05:00:00+00:00 [queued]>
+[2025-01-26T06:00:03.291+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: crypto_ingestion_dag.run_ingestion_container scheduled__2025-01-26T05:00:00+00:00 [queued]>
+[2025-01-26T06:00:03.291+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-01-26T06:00:03.299+0000] {taskinstance.py:1327} INFO - Executing <Task(DockerOperator): run_ingestion_container> on 2025-01-26 05:00:00+00:00
+[2025-01-26T06:00:03.306+0000] {standard_task_runner.py:57} INFO - Started process 3415 to run task
+[2025-01-26T06:00:03.309+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'crypto_ingestion_dag', 'run_ingestion_container', 'scheduled__2025-01-26T05:00:00+00:00', '--job-id', '36', '--raw', '--subdir', 'DAGS_FOLDER/crypto_ingestion_dag.py', '--cfg-path', '/tmp/tmpvkrzlkmt']
+[2025-01-26T06:00:03.311+0000] {standard_task_runner.py:85} INFO - Job 36: Subtask run_ingestion_container
+[2025-01-26T06:00:03.367+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T06:00:03.417+0000] {task_command.py:410} INFO - Running <TaskInstance: crypto_ingestion_dag.run_ingestion_container scheduled__2025-01-26T05:00:00+00:00 [running]> on host 791853f3217d
+[2025-01-26T06:00:03.432+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T06:00:03.886+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='crypto_ingestion_dag' AIRFLOW_CTX_TASK_ID='run_ingestion_container' AIRFLOW_CTX_EXECUTION_DATE='2025-01-26T05:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-26T05:00:00+00:00'
+[2025-01-26T06:00:03.971+0000] {docker.py:334} INFO - Starting docker container from image ingestion-container:latest
+[2025-01-26T06:00:05.885+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=crypto_ingestion_dag, task_id=run_ingestion_container, execution_date=20250126T050000, start_date=20250126T060003, end_date=20250126T060005
+[2025-01-26T06:00:05.930+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2025-01-26T06:00:05.970+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check

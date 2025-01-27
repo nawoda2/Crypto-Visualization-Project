@@ -1,0 +1,53 @@
+[2025-01-26T00:00:01.753+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T00:00:01.763+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: crypto_ingestion_dag.run_ingestion_container scheduled__2025-01-25T23:00:00+00:00 [queued]>
+[2025-01-26T00:00:01.769+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: crypto_ingestion_dag.run_ingestion_container scheduled__2025-01-25T23:00:00+00:00 [queued]>
+[2025-01-26T00:00:01.769+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-01-26T00:00:01.778+0000] {taskinstance.py:1327} INFO - Executing <Task(DockerOperator): run_ingestion_container> on 2025-01-25 23:00:00+00:00
+[2025-01-26T00:00:01.785+0000] {standard_task_runner.py:57} INFO - Started process 236 to run task
+[2025-01-26T00:00:01.789+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'crypto_ingestion_dag', 'run_ingestion_container', 'scheduled__2025-01-25T23:00:00+00:00', '--job-id', '18', '--raw', '--subdir', 'DAGS_FOLDER/crypto_ingestion_dag.py', '--cfg-path', '/tmp/tmpfhss5xt8']
+[2025-01-26T00:00:01.791+0000] {standard_task_runner.py:85} INFO - Job 18: Subtask run_ingestion_container
+[2025-01-26T00:00:01.806+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T00:00:01.853+0000] {task_command.py:410} INFO - Running <TaskInstance: crypto_ingestion_dag.run_ingestion_container scheduled__2025-01-25T23:00:00+00:00 [running]> on host f7b245b65900
+[2025-01-26T00:00:01.864+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T00:00:01.918+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='crypto_ingestion_dag' AIRFLOW_CTX_TASK_ID='run_ingestion_container' AIRFLOW_CTX_EXECUTION_DATE='2025-01-25T23:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-25T23:00:00+00:00'
+[2025-01-26T00:00:01.996+0000] {docker.py:462} INFO - Pulling docker image ingestion-container
+[2025-01-26T00:00:04.189+0000] {taskinstance.py:1824} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/docker/api/client.py", line 268, in _raise_for_status
+    response.raise_for_status()
+  File "/home/airflow/.local/lib/python3.7/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 404 Client Error: Not Found for url: http+docker://localhost/v1.47/images/create?tag=latest&fromImage=ingestion-container
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/providers/docker/operators/docker.py", line 464, in execute
+    for output in self.cli.pull(self.image, stream=True, decode=True):
+  File "/home/airflow/.local/lib/python3.7/site-packages/docker/api/image.py", line 429, in pull
+    self._raise_for_status(response)
+  File "/home/airflow/.local/lib/python3.7/site-packages/docker/api/client.py", line 270, in _raise_for_status
+    raise create_api_error_from_http_exception(e) from e
+  File "/home/airflow/.local/lib/python3.7/site-packages/docker/errors.py", line 39, in create_api_error_from_http_exception
+    raise cls(e, response=response, explanation=explanation) from e
+docker.errors.ImageNotFound: 404 Client Error for http+docker://localhost/v1.47/images/create?tag=latest&fromImage=ingestion-container: Not Found ("pull access denied for ingestion-container, repository does not exist or may require 'docker login': denied: requested access to the resource is denied")
+[2025-01-26T00:00:04.215+0000] {taskinstance.py:1350} INFO - Marking task as UP_FOR_RETRY. dag_id=crypto_ingestion_dag, task_id=run_ingestion_container, execution_date=20250125T230000, start_date=20250126T000001, end_date=20250126T000004
+[2025-01-26T00:00:04.229+0000] {standard_task_runner.py:109} ERROR - Failed to execute job 18 for task run_ingestion_container (404 Client Error for http+docker://localhost/v1.47/images/create?tag=latest&fromImage=ingestion-container: Not Found ("pull access denied for ingestion-container, repository does not exist or may require 'docker login': denied: requested access to the resource is denied"); 236)
+[2025-01-26T00:00:04.246+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 1
+[2025-01-26T00:00:04.268+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2025-01-26T00:40:30.751+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T00:40:30.759+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: crypto_ingestion_dag.run_ingestion_container scheduled__2025-01-25T23:00:00+00:00 [queued]>
+[2025-01-26T00:40:30.765+0000] {taskinstance.py:1103} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: crypto_ingestion_dag.run_ingestion_container scheduled__2025-01-25T23:00:00+00:00 [queued]>
+[2025-01-26T00:40:30.766+0000] {taskinstance.py:1308} INFO - Starting attempt 1 of 2
+[2025-01-26T00:40:30.775+0000] {taskinstance.py:1327} INFO - Executing <Task(DockerOperator): run_ingestion_container> on 2025-01-25 23:00:00+00:00
+[2025-01-26T00:40:30.782+0000] {standard_task_runner.py:57} INFO - Started process 268 to run task
+[2025-01-26T00:40:30.786+0000] {standard_task_runner.py:84} INFO - Running: ['***', 'tasks', 'run', 'crypto_ingestion_dag', 'run_ingestion_container', 'scheduled__2025-01-25T23:00:00+00:00', '--job-id', '30', '--raw', '--subdir', 'DAGS_FOLDER/crypto_ingestion_dag.py', '--cfg-path', '/tmp/tmp3e8ulo66']
+[2025-01-26T00:40:30.789+0000] {standard_task_runner.py:85} INFO - Job 30: Subtask run_ingestion_container
+[2025-01-26T00:40:30.804+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/settings.py:195 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T00:40:30.852+0000] {task_command.py:410} INFO - Running <TaskInstance: crypto_ingestion_dag.run_ingestion_container scheduled__2025-01-25T23:00:00+00:00 [running]> on host 791853f3217d
+[2025-01-26T00:40:30.862+0000] {logging_mixin.py:149} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/sqlalchemy.py:124 DeprecationWarning: The sql_alchemy_conn option in [core] has been moved to the sql_alchemy_conn option in [database] - the old setting has been used, but please update your config.
+[2025-01-26T00:40:30.921+0000] {taskinstance.py:1547} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='crypto_ingestion_dag' AIRFLOW_CTX_TASK_ID='run_ingestion_container' AIRFLOW_CTX_EXECUTION_DATE='2025-01-25T23:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2025-01-25T23:00:00+00:00'
+[2025-01-26T00:40:30.997+0000] {docker.py:334} INFO - Starting docker container from image ingestion-container:latest
+[2025-01-26T00:40:33.089+0000] {taskinstance.py:1350} INFO - Marking task as SUCCESS. dag_id=crypto_ingestion_dag, task_id=run_ingestion_container, execution_date=20250125T230000, start_date=20250126T004030, end_date=20250126T004033
+[2025-01-26T00:40:33.144+0000] {local_task_job_runner.py:225} INFO - Task exited with return code 0
+[2025-01-26T00:40:33.184+0000] {taskinstance.py:2653} INFO - 0 downstream tasks scheduled from follow-on schedule check
